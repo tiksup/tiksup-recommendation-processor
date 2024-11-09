@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package interactions;
+
+message UserInfoRequest {
+    string movie_id = 1;
+    float watching_time = 2;
+    int32 watching_repeat = 3;
+    InteractionsRequest interactions = 4;
+}
+
+message InteractionsRequest {
+    repeated string genre = 1;
+    string protagonist = 2;
+    string director = 3;
+}
+
+message MoviesRequest {
+    string id = 1;
+    string url = 2;
+    string title = 3;
+    repeated string genre = 4;
+    string protagonist = 5;
+    string director = 6; 
+}
+
+message PreprocessedDataRequest {
+    string user = 1;
+    repeated UserInfoRequest data = 2;
+    repeated MoviesRequest movies = 3;
+}
+
+message SuccessResponse {
+    bool success = 1;
+}
+
+service InteractionsService {
+    rpc ProcessData (PreprocessedDataRequest) returns (SuccessResponse);
+}
