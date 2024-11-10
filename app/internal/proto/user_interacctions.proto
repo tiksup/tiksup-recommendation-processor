@@ -3,9 +3,9 @@ syntax = "proto3";
 package interactions;
 
 message UserInfoRequest {
-    string movie_id = 1;
-    float watching_time = 2;
-    int32 watching_repeat = 3;
+    string movie_id = 1 [json_name = "movie_id"];
+    float watching_time = 2 [json_name = "watching_time"];
+    int32 watching_repeat = 3 [json_name = "watching_repeat"];
     InteractionsRequest interactions = 4;
 }
 

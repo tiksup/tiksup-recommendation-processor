@@ -1,4 +1,8 @@
 grpcio==1.67.1
 grpcio-tools==1.67.1
 protobuf==5.28.3
+py4j==0.10.9.7
+pyspark==3.5.3
+python-dotenv==1.0.1
+redis==5.2.0
 setuptools==75.3.0

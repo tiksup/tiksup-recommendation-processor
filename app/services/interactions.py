@@ -1,9 +1,15 @@
-import grpc
-from internal.proto import data_pb2
-from internal.proto import data_pb2_grpc
+from internal.proto import user_interacctions_pb2 as user_pb2
+from internal.proto import user_interacctions_pb2_grpc as user_pb2_grpc
+from google.protobuf.json_format import MessageToDict
+import json
 
 
-class InteractionsService(data_pb2_grpc.InteractionsServiceServicer):
+class InteractionsService(user_pb2_grpc.InteractionsServiceServicer):
     def ProcessData(self, request, context):
-        print(request.data)
-        return data_pb2.SuccessResponse(success=True)
+        try:
+            decode_request = MessageToDict(request)
+            print(decode_request)
+        except Exception as e:
+            print(e)
+
+        return user_pb2.SuccessResponse(success=True)
