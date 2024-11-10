@@ -1,8 +1,8 @@
 from google.protobuf.json_format import MessageToDict
-from internal import user_interacctions_pb2 as user_pb2
-from internal import user_interacctions_pb2_grpc as user_pb2_grpc
-from services.recommendations.affinity import Affinity
-from services.queue.queue import Queue
+from internal.proto import user_pb2
+from internal.proto import user_pb2_grpc
+from services.recommendations import Affinity
+from services.queue import Queue
 
 
 class InteractionsService(user_pb2_grpc.InteractionsServiceServicer):

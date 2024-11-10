@@ -1,9 +1,9 @@
-from internal import user_interacctions_pb2_grpc as user_pb2_grpc
-from services import InteractionsService
-from services import Affinity
-from services import Recommender
-from services.queue.queue import Queue
-from internal.config.database import RedisConnection
+from internal.proto import user_pb2_grpc
+from services.grpc import InteractionsService
+from services.recommendations import Affinity
+from services.recommendations import Recommender
+from services.queue import Queue
+from internal.config import RedisConnection
 from concurrent import futures
 from dotenv import load_dotenv
 from os import getenv
