@@ -14,25 +14,12 @@ class Affinity:
                     .getOrCreate()
 
     def process(self, data, previous_affinities) -> list[dict[str, any]]:
-        movies_df = self.spark.createDataFrame(data['movies'])
-
-        combined_affinity_scores = self.recommender.process_interactions(data['data'], previous_affinities)
-
-        affinity_scores_df = self.spark.createDataFrame(
-            [{"attribute": k, "score": v} for k, v in combined_affinity_scores.items()]
+        combined_affinity_scores = self.recommender.process_interactions(
+            data['data'], previous_affinities
         )
 
-        ordered_movies = self.recommender.calculate_movie_scores(movies_df, affinity_scores_df)
+        ordered_movies = self.recommender.calculate_movie_scores(
+            data['movies'], combined_affinity_scores
+        )
 
-        result = [
-            {
-                "id": movie["id"],
-                "url": movie["url"],
-                "title": movie["title"],
-                "genre": movie["genre"],
-                "protagonist": movie["protagonist"],
-                "director": movie["director"]
-            } for movie in ordered_movies
-        ]
-
-        return result
+        return ordered_movies
